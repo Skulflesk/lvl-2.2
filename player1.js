@@ -1,27 +1,45 @@
 var canvas = document.getElementById("myCanvas");
 var context = canvas.getContext("2d");
 
-
-
+var player1 = {
+    x: 20,
+    y: 20,
+    width: 150,
+    height: 100,
+    speed: 5
+};
 
 function drawPlayer1()
 {
-    // context.clearRect(0, 0, canvas.width, canvas.height);
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
-    // context.beginPath();
-    // context.arc(x, y, radius, 0, 360 * Math.PI / 180, true);
+    context.fillStyle = "#FF0000";
+    context.fillRect(player1.x, player1.y, player1.width, player1.height);
 
-// context.beginPath();
-context.fillStyle = "#FF0000"; 
-context.fillRect(20, 20, 150, 100);
-x = 200;
-y = 200;
-    
-    
-
-    
-//    x = x + xSpeed;
-//    y = y + ySpeed;
-   
+    requestAnimationFrame(drawPlayer1);
 }
-setInterval(drawPlayer1, 20);
+
+document.addEventListener("keydown", function(event)
+{
+    if (event.key == "ArrowUp")
+    {
+        player1.y -= player1.speed;
+    }
+
+    if (event.key == "ArrowDown")
+    {
+        player1.y += player1.speed;
+    }
+
+    if (event.key == "ArrowLeft")
+    {
+        player1.x -= player1.speed;
+    }
+
+    if (event.key == "ArrowRight")
+    {
+        player1.x += player1.speed;
+    }
+});
+
+drawPlayer1();
